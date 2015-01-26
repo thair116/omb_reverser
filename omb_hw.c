@@ -2,9 +2,16 @@
 #include <stdio.h>
 #include <ctype.h>
 
-main() {
+int main ( int argc, char *argv[] ) {
+  if ( argc != 3 )
+  {
+    printf( "usage: %s buffer_size cleanup_flag (0/1)\n", argv[0] );
+  }
 
-  const int  BUFFER_SIZE = 10;
+  const int  BUFFER_SIZE = atoi(argv[1]);
+  printf("Buffer size is set to %i\n", BUFFER_SIZE);
+  const int CLEANUP = atoi(argv[2]);
+  printf("Cleanup?:  %i\n", CLEANUP);
 
   printf( "Enter a sentence.\n");
 
@@ -49,7 +56,7 @@ main() {
       //    continue until no more overflows exist
       if(overflow_count > 0){
         for(int j = overflow_count; j > 0; j--){
-          char overflow[10];
+          char overflow[BUFFER_SIZE];
           char filename[20];
           sprintf(filename, "/tmp/overflow_%d", overflow_count);
           FILE *fp = fopen(filename, "r" );
@@ -59,8 +66,10 @@ main() {
             putchar(  overflow[j] );
           }
           fclose(fp);
-          if(remove(filename) == -1) {
-            perror("Error in deleting a file");
+          if(CLEANUP == 1){
+            if(remove(filename) == -1) {
+              perror("Error in deleting a file");
+            }
           }
           overflow_count --;
           }
