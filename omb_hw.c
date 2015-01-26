@@ -1,17 +1,19 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 int main ( int argc, char *argv[] ) {
   if ( argc != 3 )
   {
     printf( "usage: %s buffer_size cleanup_flag (0/1)\n", argv[0] );
+    exit(1);
   }
 
   const int  BUFFER_SIZE = atoi(argv[1]);
   printf("Buffer size is set to %i\n", BUFFER_SIZE);
   const int CLEANUP = atoi(argv[2]);
-  printf("Cleanup?:  %i\n", CLEANUP);
+  printf("Cleanup:  %i\n", CLEANUP);
 
   printf( "Enter a sentence.\n");
 
@@ -83,4 +85,5 @@ int main ( int argc, char *argv[] ) {
 
   }
   while(c != EOF);
+  exit(0);
 }
