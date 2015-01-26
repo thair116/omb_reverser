@@ -4,9 +4,11 @@
 
 main() {
 
+  const int  BUFFER_SIZE = 10;
+
   printf( "Enter a sentence.\n");
 
-  char buffer[10];
+  char buffer[BUFFER_SIZE];
   int i = 0;
   int overflow_count = 0;
   char c = getchar( );
@@ -17,7 +19,7 @@ main() {
       buffer[i] = c;
       i++;
       // if buffer is full, dump it
-      if(i >= 10) {
+      if(i >= BUFFER_SIZE) {
         overflow_count ++;
         char filename[20];
         sprintf(filename, "/tmp/overflow_%d", overflow_count);
@@ -53,7 +55,7 @@ main() {
           FILE *fp = fopen(filename, "r" );
 
           fscanf(fp, "%s", overflow);
-          for (int j = 0; j < 10; j++) {
+          for (int j = 0; j < BUFFER_SIZE; j++) {
             putchar(  overflow[j] );
           }
           fclose(fp);
