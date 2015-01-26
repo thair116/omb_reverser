@@ -60,13 +60,11 @@ main() {
           if(remove(filename) == -1) {
             perror("Error in deleting a file");
           }
-            // decrement overflow_count
           overflow_count --;
-
           }
         }
 
-        // print the space at the end of a word
+        // print a space to separate words
         putchar(' ');
       }
 
