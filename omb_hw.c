@@ -11,9 +11,10 @@ main() {
   int i = 0;
   // count of buffer overflow chunks
   int overflow_count = 0;
+  char c = getchar( );
 
-  while(1 == 1){
-    char c = getchar( );
+
+  do{
     // if char is not space:
     //   add it to the buffer
     if(isalpha( c )) {
@@ -81,9 +82,9 @@ main() {
         // print the space at the end of a word
         putchar(' ');
       }
+      
+      c = getchar( );
 
-      if(c == EOF){
-        break;
-      }
   }
+  while(c != EOF);
 }
